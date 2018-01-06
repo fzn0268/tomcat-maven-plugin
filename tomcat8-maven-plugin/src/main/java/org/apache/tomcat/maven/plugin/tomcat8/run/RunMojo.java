@@ -24,10 +24,7 @@ import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.loader.WebappClassLoaderBase;
 import org.apache.catalina.loader.WebappLoader;
-import org.apache.catalina.webresources.EmptyResource;
-import org.apache.catalina.webresources.FileResource;
-import org.apache.catalina.webresources.FileResourceSet;
-import org.apache.catalina.webresources.JarResource;
+import org.apache.catalina.webresources.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -71,6 +68,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 
 /**
  * Runs the current project as a dynamic web application using an embedded Tomcat server.
@@ -480,17 +478,15 @@ public class RunMojo
 
                                 JarEntry jarEntry = jarFile.getJarEntry( StringUtils.removeStart( path, "/" ) );
 
-                                return new JarResource( this, //
+                                return new JarResource( new JarResourceSet(this, "", filePath, ""), //
                                                         getPath(), //
-                                                        filePath, //
                                                         url.getPath().substring( 0, idx ), //
-                                                        jarEntry, //
-                                                        "", //
-                                                        null );
+                                                        jarEntry //
+                                );
                             }
                             else
                             {
-                                return new FileResource( this, webAppPath, new File( url.getFile() ), true );
+                                return new FileResource( this, webAppPath, new File( url.getFile() ), true, new Manifest());
                             }
 
                         }
@@ -537,18 +533,18 @@ public class RunMojo
                         if ( StringUtils.startsWithIgnoreCase( path, "/WEB-INF/LIB" ) )
                         {
                             File file = new File( StringUtils.removeStartIgnoreCase( path, "/WEB-INF/LIB" ) );
-                            return new FileResource( context.getResources(), getPath(), file, true );
+                            return new FileResource( context.getResources(), getPath(), file, true, new Manifest());
                         }
                         if ( StringUtils.equalsIgnoreCase( path, "/WEB-INF/classes" ) )
                         {
                             return new FileResource( context.getResources(), getPath(),
-                                                     new File( project.getBuild().getOutputDirectory() ), true );
+                                                     new File( project.getBuild().getOutputDirectory() ), true, new Manifest());
                         }
 
                         File file = new File( project.getBuild().getOutputDirectory(), path );
                         if ( file.exists() )
                         {
-                            return new FileResource( context.getResources(), getPath(), file, true );
+                            return new FileResource( context.getResources(), getPath(), file, true, new Manifest());
                         }
 
                         //if ( StringUtils.endsWith( path, ".class" ) )
@@ -569,13 +565,11 @@ public class RunMojo
                                         (JarEntry) jarFile.getEntry( StringUtils.removeStart( path, "/" ) );
                                     if ( jarEntry != null )
                                     {
-                                        return new JarResource( context.getResources(), //
+                                        return new JarResource( new JarResourceSet(context.getResources(), "", jarFile.getName(), path), //
                                                                 getPath(),  //
-                                                                jarFile.getName(), //
                                                                 jar.toURI().toString(), //
-                                                                jarEntry, //
-                                                                path, //
-                                                                jarFile.getManifest() );
+                                                                jarEntry //
+                                        );
                                     }
                                 }
                                 catch ( IOException e )

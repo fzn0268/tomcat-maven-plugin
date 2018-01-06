@@ -41,17 +41,17 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.5</maven.compiler.source>
-    <maven.compiler.target>1.5</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
     <mavenVersion>2.2.1</mavenVersion>
 
-    <mavenPluginPluginVersion>3.2</mavenPluginPluginVersion>
+    <mavenPluginPluginVersion>3.5</mavenPluginPluginVersion>
     <!-- Test settings -->
     <maven.test.redirectTestOutputToFile>false</maven.test.redirectTestOutputToFile>
-    <surefire.version>2.18.1</surefire.version>
+    <surefire.version>2.20.1</surefire.version>
     <failsafe.version>${surefire.version}</failsafe.version>
 
-    <junit.version>4.10</junit.version>
+    <junit.version>4.12</junit.version>
     <it.sleep.time>2000</it.sleep.time>
     <verifier.maven.debug>false</verifier.maven.debug>
     <verifier.debugJvm>false</verifier.debugJvm>
@@ -73,8 +73,8 @@
     <its.ajp.port>2001</its.ajp.port>
     <!-- server port for it tests -->
     <its.server.port>2008</its.server.port>
-    <tomcat7Version>7.0.59</tomcat7Version>
-    <tomcat8Version>8.0.14</tomcat8Version>
+    <tomcat7Version>7.0.82</tomcat7Version>
+    <tomcat8Version>8.0.48</tomcat8Version>
 
     <!-- to prevent isssues with last apache parent pom -->
     <arguments />
@@ -334,7 +334,7 @@
       <dependency>
         <groupId>org.eclipse.jdt.core.compiler</groupId>
         <artifactId>ecj</artifactId>
-        <version>4.4</version>
+        <version>4.6.1</version>
       </dependency>
 
       <dependency>
@@ -595,12 +595,12 @@
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
-        <version>1.6</version>
+        <version>1.9</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.2</version>
+        <version>2.6</version>
       </dependency>
       <dependency>
         <groupId>commons-lang</groupId>
@@ -610,22 +610,22 @@
       <dependency>
         <groupId>commons-cli</groupId>
         <artifactId>commons-cli</artifactId>
-        <version>1.2</version>
+        <version>1.4</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-compress</artifactId>
-        <version>1.4.1</version>
+        <version>1.15</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-classworlds</artifactId>
-        <version>2.2.2</version>
+        <version>2.5.2</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>10.0.1</version>
+        <version>23.6-android</version>
       </dependency>
 
       <!-- Test Dependencies -->
@@ -648,27 +648,27 @@
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.3.5</version>
+        <version>4.5.4</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>1.7.5</version>
+        <version>1.7.25</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
-        <version>1.7.5</version>
+        <version>1.7.25</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
-        <version>2.0.1</version>
+        <version>2.10.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-slf4j-impl</artifactId>
-        <version>2.0.1</version>
+        <version>2.10.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -680,11 +680,11 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.6</version>
+          <version>1.8</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.5.1</version>
+          <version>3.7.0</version>
           <configuration>
             <encoding>${project.build.sourceEncoding}</encoding>
             <source>${maven.compiler.source}</source>
@@ -694,7 +694,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.5.1</version>
+          <version>3.0.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -709,7 +709,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.3.1</version>
+          <version>2.5.2</version>
           <configuration>
             <createChecksum>true</createChecksum>
           </configuration>
@@ -740,12 +740,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.5</version>
+          <version>2.8.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5</version>
+          <version>2.5.3</version>
           <configuration>
             <preparationGoals>clean install</preparationGoals>
           </configuration>
@@ -753,27 +753,27 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.6</version>
+          <version>3.0.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.3</version>
+          <version>3.7</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-invoker-plugin</artifactId>
-          <version>1.8</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.plexus</groupId>
           <artifactId>plexus-component-metadata</artifactId>
-          <version>1.5.5</version>
+          <version>1.7.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
-          <version>0.11</version>
+          <version>0.12</version>
           <configuration>
             <excludes>
               <exclude>.gitignore</exclude>
@@ -793,7 +793,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-publish-plugin</artifactId>
-          <version>1.0</version>
+          <version>1.1</version>
           <configuration>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/tomcat/site/trunk/docs/${sitePath}</pubScmUrl>
             <checkinComment>Apache Tomcat Maven Plugin site documentation for ${project.version}</checkinComment>
@@ -805,7 +805,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9.1</version>
+          <version>3.0.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -826,7 +826,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.3.1</version>
+        <version>1.4.1</version>
         <executions>
           <execution>
             <id>enforce-java</id>
@@ -836,7 +836,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>1.6.0</version>
+                  <version>1.7.0</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
@@ -869,7 +869,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.7</version>
+        <version>2.9</version>
         <configuration>
           <linkOnly>true</linkOnly>
         </configuration>
@@ -887,7 +887,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>3.0.0</version>
         <inherited>false</inherited>
         <reportSets>
           <reportSet>
@@ -920,7 +920,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
-        <version>2.8</version>
+        <version>2.9</version>
         <inherited>false</inherited>
         <configuration>
           <columnNames>Type,Fix Version,Key,Summary,Assignee,Status,Created</columnNames>
@@ -955,7 +955,7 @@
         <plugins>
           <plugin>
             <artifactId>maven-pmd-plugin</artifactId>
-            <version>2.5</version>
+            <version>3.8</version>
             <configuration>
               <targetJdk>${maven.compiler.target}</targetJdk>
               <rulesets>
@@ -966,7 +966,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>2.9.1</version>
+            <version>2.17</version>
             <configuration>
               <configLocation>config/maven_checks.xml</configLocation>
               <headerLocation>config/maven-header.txt</headerLocation>
@@ -975,7 +975,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jxr-plugin</artifactId>
-            <version>2.2</version>
+            <version>2.5</version>
           </plugin>
           <plugin>
             <groupId>org.codehaus.sonar-plugins</groupId>
