@@ -29,8 +29,10 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static junitx.framework.StringAssert.assertContains;
+
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -76,7 +78,8 @@ public abstract class AbstractTomcatRunMultiConfigIT
     {
         final String responseBody = executeVerifyWithGet();
         assertNotNull( "Received message body from " + getWebappUrl() + " must not be null.", responseBody );
-        assertContains( "Response from " + getWebappUrl() + " must match expected content.", URL_QUERY, responseBody );
+        assertThat( "Response from " + getWebappUrl() + " must match expected content.", responseBody, containsString(URL_QUERY));
+//        assertContains( "Response from " + getWebappUrl() + " must match expected content.", URL_QUERY, responseBody );
 
         final File tomcatFolder = new File( webappHome, "target/tc" );
         final File emptyLocation = new File( tomcatFolder, "conf/empty.txt" );

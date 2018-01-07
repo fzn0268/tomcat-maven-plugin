@@ -24,8 +24,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static junitx.framework.StringAssert.assertContains;
+
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests the example "Using a different context path" as the WAR gets deployed below the contextpath /lorem.
@@ -61,7 +63,8 @@ public class AbstractUsageContextpathIT
     {
         final String responseBody = executeVerifyWithGet();
         assertNotNull( "Received message body must not be null.", responseBody );
-        assertContains( "Response must match expected content.", "Success!", responseBody );
+        assertThat( "Response must match expected content.", responseBody, containsString("Success!") );
+//        assertContains( "Response must match expected content.", "Success!", responseBody );
 
         logger.info( "Error Free Log check" );
         verifier.verifyErrorFreeLog();

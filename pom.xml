@@ -74,7 +74,7 @@
     <!-- server port for it tests -->
     <its.server.port>2008</its.server.port>
     <tomcat7Version>7.0.82</tomcat7Version>
-    <tomcat8Version>8.0.48</tomcat8Version>
+    <tomcat8Version>8.0.18</tomcat8Version>
 
     <!-- to prevent isssues with last apache parent pom -->
     <arguments />
@@ -634,11 +634,6 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>junit-addons</groupId>
-        <artifactId>junit-addons</artifactId>
-        <version>1.4</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.shared</groupId>

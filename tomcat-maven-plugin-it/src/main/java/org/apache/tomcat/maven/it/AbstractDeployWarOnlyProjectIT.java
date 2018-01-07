@@ -26,8 +26,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
-import static junitx.framework.StringAssert.assertContains;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -55,7 +56,8 @@ public abstract class AbstractDeployWarOnlyProjectIT
     {
         final String responseBody = executeVerifyWithGet();
         assertNotNull( "Received message body must not be null.", responseBody );
-        assertContains( "Response must match expected content.", "It works !!", responseBody );
+        assertThat( "Response must match expected content.", responseBody, containsString("It works !!") );
+//        assertContains( "Response must match expected content.", "It works !!", responseBody );
 
         assertTrue( "Tomcat folder should exist in target folder of project at " + webappHome,
                     new File( webappHome, "target/tomcat" ).exists() );
