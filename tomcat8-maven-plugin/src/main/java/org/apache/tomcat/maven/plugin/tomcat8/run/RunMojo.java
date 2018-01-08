@@ -58,11 +58,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLClassLoader;
+import java.net.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -104,7 +101,7 @@ public class RunMojo
     /**
      * Set the "follow standard delegation model" flag used to configure our ClassLoader.
      *
-     * @see http://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/loader/WebappLoader.html#setDelegate(boolean)
+     * @see WebappLoader#setDelegate(boolean)
      * @since 1.0
      */
     @Parameter( property = "tomcat.delegate", defaultValue = "true" )
@@ -474,7 +471,7 @@ public class RunMojo
 
                             if ( idx >= 0 )
                             {
-                                String filePath = StringUtils.removeStart( url.getFile().substring( 0, idx ), "file:" );
+                                String filePath = URLDecoder.decode(StringUtils.removeStart( url.getFile().substring( 0, idx ), "file:" ), Charset.defaultCharset().name());
 
                                 jarFile = new JarFile( filePath );
 
