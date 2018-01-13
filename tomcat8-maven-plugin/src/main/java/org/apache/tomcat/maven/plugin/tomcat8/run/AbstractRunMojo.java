@@ -817,7 +817,8 @@ public abstract class AbstractRunMojo
             }
 
             File file = new File( path );
-            if ( file.exists() )
+            // shade root of file system
+            if ( !"/".equals(path) && file.exists() )
             {
                 return new FileResource( this, this.webAppPath, file, true, null );
             }
